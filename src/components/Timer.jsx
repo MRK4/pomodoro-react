@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {VscDebugStart, VscDebugRestart} from "react-icons/vsc"
-import {FaStop} from "react-icons/fa"
+import { VscDebugStart, VscDebugRestart } from "react-icons/vsc"
+import { FaStop } from "react-icons/fa"
 
 function Timer() {
-    const [timeLeft, setTimeLeft] = useState(25 * 60); // in seconds
+  const [timeLeft, setTimeLeft] = useState(25 * 60); // in seconds
   const [timerRunning, setTimerRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
 
@@ -14,7 +14,6 @@ function Timer() {
         setTimeLeft(timeLeft - 1);
       }, 1000);
     } else if (timeLeft === 0) {
-      new Audio('./assets/songs/bell.mp3').play();
       setIsBreak(!isBreak);
       setTimeLeft(isBreak ? 5 * 60 : 25 * 60);
     }
@@ -39,13 +38,21 @@ function Timer() {
       .padStart(2, "0")}`;
   };
 
-  // Calculer le pourcentage de progression
+  // Play a song when the timer is equal to 0
+  useEffect(() => {
+    console.log(timeLeft);
+    if (timeLeft === 0) {
+      new Audio('./assets/songs/bell.mp3').play();
+    }
+  });
+
+  // Calculate the percentage of progress
   let progressPercentage = ((1500 - timeLeft) / 1500) * 100;
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full space-y-6">
       <h1 className="text-4xl font-bold">{isBreak ? "Take a break ! 🧋" : "Pomodoro ✍️"}</h1>
-      <div className="radial-progress" style={{"--value":100 - progressPercentage}}>
+      <div className="radial-progress" style={{ "--value": 100 - progressPercentage }}>
         <h2 className="text-lg font-semibold">{formatTime(timeLeft)}</h2>
       </div>
       <span className="flex space-x-3 text-2xl">
@@ -60,4 +67,4 @@ function Timer() {
   );
 }
 
-export default Timer
+export default Timer;
