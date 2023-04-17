@@ -2,7 +2,7 @@ import Timer from "./components/Timer";
 
 const App = () => {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full antialiased">
       <main className="w-full h-full">
         <Timer />
       </main>
