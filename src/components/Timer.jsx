@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { VscDebugStart, VscDebugRestart } from "react-icons/vsc"
-import { FaStop } from "react-icons/fa"
+import { FaStop, FaVolumeDown, FaVolumeUp } from "react-icons/fa"
 
 function Timer() {
   const [timeLeft, setTimeLeft] = useState(25 * 60); // in seconds
@@ -37,13 +37,19 @@ function Timer() {
   //   return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   // };
 
+
   // Play a song when the timer is equal to 0
+
+  const [volume, setVolume] = useState(0.5);
+  console.log(volume);
+
   useEffect(() => {
-    console.log(timeLeft);
     if (timeLeft === 0) {
-      new Audio('./assets/songs/bell.mp3').play();
+      const audio = new Audio('./assets/songs/bell.mp3');
+      audio.volume = volume;
+      audio.play();
     }
-  });
+  }, [timeLeft, volume]);
 
   // Calculate the percentage of progress
   let progressPercentage = ((1500 - timeLeft) / 1500) * 100;
@@ -61,7 +67,7 @@ function Timer() {
   return (
     <div className="flex flex-col items-center justify-center w-full h-full group space-y-9">
       <h1 className="text-4xl font-bold text-center transition duration-150 ease-in-out opacity-100 sm:opacity-25 group-hover:opacity-100">{isBreak ? "Take a break ! 🧋" : "Pomodoro ✍️"}</h1>
-      <div className="text-green-300 radial-progress" style={{"--value":100 - progressPercentage, "--size": "15rem", "--thickness": "1.5rem"}}>
+      <section className="text-success radial-progress" style={{"--value":100 - progressPercentage, "--size": "15rem", "--thickness": "1.5rem"}}>
         <span className="flex gap-3 text-white">
           <div>
             <span className="font-mono text-4xl countdown">
@@ -76,8 +82,8 @@ function Timer() {
             sec
           </div>
         </span>
-      </div>
-      <span className="flex space-x-6 text-4xl transition duration-150 ease-in-out opacity-100 sm:opacity-25 group-hover:opacity-100">
+      </section>
+      <section className="flex space-x-6 text-4xl transition duration-150 ease-in-out opacity-100 sm:opacity-25 group-hover:opacity-100">
         <div className="tooltip tooltip-bottom" data-tip={timerRunning ? 'Stop' : 'Start'}>
           <button className="p-1 transition transform group/btn hover:scale-75" onClick={handleStartStopClick}>
             {timerRunning ? <FaStop className="group-hover/btn:text-orange-500" /> : <VscDebugStart className="group-hover/btn:text-green-500" />}
@@ -88,7 +94,22 @@ function Timer() {
             <VscDebugRestart className="group-hover/btn:text-red-500" />
           </button>
         </div>
-      </span>
+      </section>
+      <section className="flex flex-col items-center justify-center gap-3 text-white">
+        <span className="flex items-center justify-center gap-4">
+          <FaVolumeDown className="text-xl" />
+          <input
+            className="range range-sm range-success"
+            type="range"
+            min="0"
+            max="1"
+            step="0.2"
+            value={volume}
+            onChange={ev => setVolume(ev.target.value)}
+          />
+          <FaVolumeUp className="text-2xl" />
+        </span>
+      </section>
     </div>
   );
 }
