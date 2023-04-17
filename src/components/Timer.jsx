@@ -31,11 +31,11 @@ function Timer() {
     setTimeLeft(25 * 60);
   };
 
-  const formatTime = (timeInSeconds) => {
-    let minutes = Math.floor(timeInSeconds / 60);
-    let seconds = timeInSeconds % 60;
-    return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-  };
+  // const formatTime = (timeInSeconds) => {
+  //   let minutes = Math.floor(timeInSeconds / 60);
+  //   let seconds = timeInSeconds % 60;
+  //   return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  // };
 
   // Play a song when the timer is equal to 0
   useEffect(() => {
@@ -60,7 +60,7 @@ function Timer() {
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full group space-y-9">
-      <h1 className="text-4xl font-bold text-center transition duration-150 ease-in-out opacity-25 group-hover:opacity-100">{isBreak ? "Take a break ! 🧋" : "Pomodoro ✍️"}</h1>
+      <h1 className="text-4xl font-bold text-center transition duration-150 ease-in-out opacity-100 sm:opacity-25 group-hover:opacity-100">{isBreak ? "Take a break ! 🧋" : "Pomodoro ✍️"}</h1>
       <div className="text-green-300 radial-progress" style={{"--value":100 - progressPercentage, "--size": "15rem", "--thickness": "1.5rem"}}>
         <span className="flex gap-3 text-white">
           <div>
@@ -77,7 +77,7 @@ function Timer() {
           </div>
         </span>
       </div>
-      <span className="flex space-x-6 text-4xl transition duration-150 ease-in-out opacity-25 group-hover:opacity-100">
+      <span className="flex space-x-6 text-4xl transition duration-150 ease-in-out opacity-100 sm:opacity-25 group-hover:opacity-100">
         <div className="tooltip tooltip-bottom" data-tip={timerRunning ? 'Stop' : 'Start'}>
           <button className="p-1 transition transform group/btn hover:scale-75" onClick={handleStartStopClick}>
             {timerRunning ? <FaStop className="group-hover/btn:text-orange-500" /> : <VscDebugStart className="group-hover/btn:text-green-500" />}
