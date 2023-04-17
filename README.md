@@ -31,7 +31,7 @@ yarn
 npm run dev
 ```
 
-### Run the server (yarn)  
+### Run the server (yarn)
 ```bash
 yarn dev
 ```

@@ -14,8 +14,9 @@ function Timer() {
         setTimeLeft(timeLeft - 1);
       }, 1000);
     } else if (timeLeft === 0) {
-      setIsBreak(!isBreak);
-      setTimeLeft(isBreak ? 5 * 60 : 25 * 60);
+      const newIsBreak = !isBreak;
+      setIsBreak(newIsBreak);
+      setTimeLeft(newIsBreak ? 5 * 60 : 25 * 60);
     }
     return () => clearInterval(intervalId);
   }, [timerRunning, timeLeft, isBreak]);
@@ -60,8 +61,8 @@ function Timer() {
   return (
     <div className="flex flex-col items-center justify-center w-full h-full group space-y-9">
       <h1 className="text-4xl font-bold text-center transition duration-150 ease-in-out opacity-25 group-hover:opacity-100">{isBreak ? "Take a break ! 🧋" : "Pomodoro ✍️"}</h1>
-      <div className="radial-progress" style={{"--value":100 - progressPercentage, "--size": "15rem", "--thickness": "1.5rem"}}>
-        <span className="flex gap-3">
+      <div className="text-green-300 radial-progress" style={{"--value":100 - progressPercentage, "--size": "15rem", "--thickness": "1.5rem"}}>
+        <span className="flex gap-3 text-white">
           <div>
             <span className="font-mono text-4xl countdown">
               <span style={{"--value":`${getMinutes(timeLeft)}`}}></span>
