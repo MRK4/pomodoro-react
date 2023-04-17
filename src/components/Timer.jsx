@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {VscDebugStart, VscDebugRestart} from "react-icons/vsc"
-import {FaStop} from "react-icons/fa"
+import { VscDebugStart, VscDebugRestart } from "react-icons/vsc"
+import { FaStop } from "react-icons/fa"
 
 function Timer() {
   const [timeLeft, setTimeLeft] = useState(25 * 60); // in seconds
@@ -92,4 +92,4 @@ function Timer() {
   );
 }
 
-export default Timer
+export default Timer;
