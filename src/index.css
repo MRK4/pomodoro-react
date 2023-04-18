@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    @apply h-screen w-screen;
-}
 #root{
-    @apply h-full w-full;
+    @apply flex justify-center items-center h-full w-full;
 }

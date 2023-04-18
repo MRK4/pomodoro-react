@@ -8,7 +8,7 @@ function Header(props) {
   };
 
   return (
-    <header className="sticky top-0 flex items-center justify-between w-full py-4">
+    <header className="sticky top-0 flex items-center justify-between w-full px-4 py-4">
       <h1 className="text-2xl font-bold">Pomodoro</h1>
       <div className="flex items-center">
         <label htmlFor="sound" className="mr-2">
