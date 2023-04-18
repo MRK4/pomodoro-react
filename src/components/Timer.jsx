@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { VscDebugStart, VscDebugRestart } from "react-icons/vsc"
 import { FaStop, FaVolumeDown, FaVolumeUp } from "react-icons/fa"
 
-function Timer() {
-  const [timeLeft, setTimeLeft] = useState(25 * 60); // in seconds
+function Timer({ selectedSound }) {
+  const [timeLeft, setTimeLeft] = useState(1 * 60); // in seconds
   const [timerRunning, setTimerRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
 
@@ -16,7 +16,7 @@ function Timer() {
     } else if (timeLeft === 0) {
       const newIsBreak = !isBreak;
       setIsBreak(newIsBreak);
-      setTimeLeft(newIsBreak ? 5 * 60 : 25 * 60);
+      setTimeLeft(newIsBreak ? 5 * 60 : 1 * 60);
     }
     return () => clearInterval(intervalId);
   }, [timerRunning, timeLeft, isBreak]);
@@ -28,7 +28,7 @@ function Timer() {
   const handleResetClick = () => {
     setTimerRunning(false);
     setIsBreak(false);
-    setTimeLeft(25 * 60);
+    setTimeLeft(1 * 60);
   };
 
   // const formatTime = (timeInSeconds) => {
@@ -41,15 +41,17 @@ function Timer() {
   // Play a song when the timer is equal to 0
 
   const [volume, setVolume] = useState(0.5);
-  console.log(volume);
+
+  console.log(selectedSound);
 
   useEffect(() => {
     if (timeLeft === 0) {
-      const audio = new Audio('./assets/songs/bell.mp3');
+      const audio = new Audio(selectedSound);
       audio.volume = volume;
       audio.play();
     }
-  }, [timeLeft, volume]);
+  }, [timeLeft, selectedSound, volume]);
+
 
   // Calculate the percentage of progress
   let progressPercentage = ((1500 - timeLeft) / 1500) * 100;
