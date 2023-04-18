@@ -3,6 +3,8 @@ import React from "react";
 function Header(props) {
   const handleSoundChange = (event) => {
     props.onSoundChange(event.target.value);
+    const audio = new Audio(event.target.value);
+    audio.play();
   };
 
   return (

@@ -42,8 +42,6 @@ function Timer({ selectedSound }) {
 
   const [volume, setVolume] = useState(0.5);
 
-  console.log(selectedSound);
-
   useEffect(() => {
     if (timeLeft === 0) {
       const audio = new Audio(selectedSound);
