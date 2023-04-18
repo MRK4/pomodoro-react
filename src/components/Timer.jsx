@@ -3,7 +3,7 @@ import { VscDebugStart, VscDebugRestart } from "react-icons/vsc"
 import { FaStop, FaVolumeDown, FaVolumeUp } from "react-icons/fa"
 
 function Timer({ selectedSound }) {
-  const [timeLeft, setTimeLeft] = useState(1 * 60); // in seconds
+  const [timeLeft, setTimeLeft] = useState(25 * 60); // in seconds
   const [timerRunning, setTimerRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
 
@@ -16,7 +16,7 @@ function Timer({ selectedSound }) {
     } else if (timeLeft === 0) {
       const newIsBreak = !isBreak;
       setIsBreak(newIsBreak);
-      setTimeLeft(newIsBreak ? 5 * 60 : 1 * 60);
+      setTimeLeft(newIsBreak ? 5 * 60 : 25 * 60);
     }
     return () => clearInterval(intervalId);
   }, [timerRunning, timeLeft, isBreak]);
@@ -28,7 +28,7 @@ function Timer({ selectedSound }) {
   const handleResetClick = () => {
     setTimerRunning(false);
     setIsBreak(false);
-    setTimeLeft(1 * 60);
+    setTimeLeft(25 * 60);
   };
 
   // const formatTime = (timeInSeconds) => {
