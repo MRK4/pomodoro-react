@@ -15,7 +15,7 @@ function Header(props) {
           Notification sound:
         </label>
         <select
-          className="select select-accent"
+          className="select select-success"
           id="sound"
           value={props.selectedSound}
           onChange={handleSoundChange}
