@@ -4,6 +4,7 @@ function Header(props) {
   const handleSoundChange = (event) => {
     props.onSoundChange(event.target.value);
     const audio = new Audio(event.target.value);
+    audio.volume = 0.2;
     audio.play();
   };
 
@@ -22,6 +23,8 @@ function Header(props) {
         >
           <option value="./assets/songs/bell.mp3">🔔</option>
           <option value="./assets/songs/clown.mp3">🤡</option>
+          <option value="./assets/songs/birds.mp3">🐦</option>
+          <option value="./assets/songs/japanese_chim.mp3">🇯🇵</option>
         </select>
       </div>
     </header>

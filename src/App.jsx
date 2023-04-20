@@ -12,7 +12,7 @@ const App = () => {
   return (
     <div className="container h-full mx-auto">
       <Header selectedSound={selectedSound} onSoundChange={handleSoundChange} />
-      <main className="w-full h-full px-4 py-24">
+      <main className="w-full h-full px-4 py-32">
         <Timer selectedSound={selectedSound} />
       </main>
       <footer className="container absolute bottom-0 py-4 mx-auto">
