@@ -32,7 +32,6 @@ function Header(props) {
           onChange={handleAmbiantChange}
         >
           <option selected>🚫</option>
-          <option value="https://www.youtube.com/watch?v=xNN7iTA57jM">🔥 Rain & Thunderstorm</option>
           <option value="https://www.youtube.com/watch?v=xNN7iTA57jM">🌲 Forest</option>
           <option value="https://www.youtube.com/watch?v=4vIQON2fDWM">📚 Old Library</option>
           <option value="https://www.youtube.com/watch?v=Cec4Z-Vlf7Q">🚂 Train Ride</option>
