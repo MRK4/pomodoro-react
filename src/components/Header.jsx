@@ -22,7 +22,7 @@ function Header(props) {
   return (
     <header className="sticky top-0 flex items-center justify-between w-full px-4 py-4">
       <div className="flex items-center">
-        <label htmlFor="ambiant" className="mr-2">
+        <label htmlFor="ambiant" className="mr-2 text-xs">
           Ambiant sound:
         </label>
         <select
@@ -42,7 +42,7 @@ function Header(props) {
         </select>
       </div>
       <div className="flex items-center">
-        <label htmlFor="sound" className="mr-2">
+        <label htmlFor="sound" className="mr-2 text-xs">
           Notification sound:
         </label>
         <select
