@@ -15,15 +15,15 @@ const App = () => {
   };
 
   return (
-    <div className="container h-full mx-auto">
+    <div className="h-full">
       <Header selectedSound={selectedSound} onSoundChange={handleSoundChange} selectedAmbiant={selectedAmbiant} onAmbiantChange={handleAmbiantChange} />
-      <main className="w-full h-full px-4 py-32">
+      <main className="w-full h-full py-16">
         <Timer selectedSound={selectedSound} selectedAmbiant={selectedAmbiant} />
       </main>
-      <footer className="container absolute bottom-0 py-4 mx-auto">
+      <footer className="absolute bottom-0 w-full py-4">
         <p className="w-full text-center">
           <small>
-          Created by Clément Poudrée - <a className="link" href="https://clementpoudree.com" target="_blank">www.clementpoudree.com</a>
+          Created by <a className="link" href="https://clementpoudree.com" target="_blank">Clément Poudrée</a>
           </small>
         </p>
       </footer>

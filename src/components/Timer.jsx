@@ -57,24 +57,28 @@ function Timer({ selectedSound, selectedAmbiant }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full group space-y-9">
-      <h1 className="text-4xl font-bold text-center transition duration-150 ease-in-out opacity-100 sm:opacity-25 group-hover:opacity-100">{isBreak ? "Take a break ! 🧋" : "Pomodoro ✍️"}</h1>
-      <section className="text-success radial-progress" style={{"--value":100 - progressPercentage, "--size": "15rem", "--thickness": "1.5rem"}}>
+    <div className="flex flex-col items-center justify-center w-full h-full overflow-hidden group space-y-9">
+      <h1 className="text-3xl font-bold text-center transition duration-150 ease-in-out opacity-100 sm:opacity-25 group-hover:opacity-100">{isBreak ? "Take a break ! 🧋" : "Pomodoro ✍️"}</h1>
+
+      {/* TIMER */}
+      <section className="text-success radial-progress" style={{"--value":100 - progressPercentage, "--size": "12rem", "--thickness": "1rem"}}>
         <span className="flex gap-3 text-white">
           <div>
-            <span className="font-mono text-4xl countdown">
+            <span className="font-mono text-3xl countdown">
               <span style={{"--value":`${getMinutes(timeLeft)}`}}></span>
             </span>
             min
           </div>
           <div>
-            <span className="font-mono text-4xl countdown">
+            <span className="font-mono text-3xl countdown">
               <span style={{"--value":`${getSeconds(timeLeft)}`}}></span>
             </span>
             sec
           </div>
         </span>
       </section>
+
+      {/* BUTTONS */}
       <section className="flex space-x-6 text-4xl transition duration-150 ease-in-out opacity-100 sm:opacity-25 group-hover:opacity-100">
         <div className="tooltip tooltip-bottom" data-tip={timerRunning ? 'Stop' : 'Start'}>
           <button className="p-1 transition transform group/btn hover:scale-75" onClick={handleStartStopClick}>
@@ -87,6 +91,8 @@ function Timer({ selectedSound, selectedAmbiant }) {
           </button>
         </div>
       </section>
+
+      {/* VOLUME */}
       <section className="flex flex-col items-center justify-center gap-8 text-white">
         {/* Notification volume */}
         <div className="flex flex-col items-center justify-center gap-2">
@@ -123,6 +129,9 @@ function Timer({ selectedSound, selectedAmbiant }) {
           </span>
         </div>
       </section>
+
+
+      {/* PLAYER FOR AMBIANT SOUND */}
       <ReactPlayer className="absolute hidden" url={selectedAmbiant} playing loop volume={volumeAmbiant} />
     </div>
   );
