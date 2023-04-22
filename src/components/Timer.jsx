@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
+import ReactPlayer from 'react-player';
 import { VscDebugStart, VscDebugRestart } from "react-icons/vsc"
 import { FaStop, FaVolumeDown, FaVolumeUp } from "react-icons/fa"
 
-function Timer({ selectedSound }) {
+function Timer({ selectedSound, selectedAmbiant }) {
   const [timeLeft, setTimeLeft] = useState(25 * 60); // in seconds
   const [timerRunning, setTimerRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
+  const [volume, setVolume] = useState(0.4);
+  const [volumeAmbiant, setVolumeAmbiant] = useState(0.1);
 
   useEffect(() => {
     let intervalId;
@@ -31,17 +34,7 @@ function Timer({ selectedSound }) {
     setTimeLeft(25 * 60);
   };
 
-  // const formatTime = (timeInSeconds) => {
-  //   let minutes = Math.floor(timeInSeconds / 60);
-  //   let seconds = timeInSeconds % 60;
-  //   return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-  // };
-
-
   // Play a song when the timer is equal to 0
-
-  const [volume, setVolume] = useState(0.5);
-
   useEffect(() => {
     if (timeLeft === 0) {
       const audio = new Audio(selectedSound);
@@ -49,7 +42,6 @@ function Timer({ selectedSound }) {
       audio.play();
     }
   }, [timeLeft, selectedSound, volume]);
-
 
   // Calculate the percentage of progress
   let progressPercentage = ((1500 - timeLeft) / 1500) * 100;
@@ -95,21 +87,43 @@ function Timer({ selectedSound }) {
           </button>
         </div>
       </section>
-      <section className="flex flex-col items-center justify-center gap-3 text-white">
-        <span className="flex items-center justify-center gap-4">
-          <FaVolumeDown className="text-xl" />
-          <input
-            className="range range-sm range-success"
-            type="range"
-            min="0"
-            max="1"
-            step="0.2"
-            value={volume}
-            onChange={ev => setVolume(ev.target.value)}
-          />
-          <FaVolumeUp className="text-2xl" />
-        </span>
+      <section className="flex flex-col items-center justify-center gap-8 text-white">
+        {/* Notification volume */}
+        <div className="flex flex-col items-center justify-center gap-2">
+          <h3 className="text-sm">Notification volume</h3>
+          <span className="flex items-center justify-center gap-4">
+            <FaVolumeDown className="text-lg" />
+            <input
+              className="range range-sm range-success"
+              type="range"
+              min="0"
+              max="1"
+              step="0.1"
+              value={volume}
+              onChange={ev => setVolume(ev.target.value)}
+            />
+            <FaVolumeUp className="text-2xl" />
+          </span>
+        </div>
+        {/* Ambiant volume */}
+        <div className="flex flex-col items-center justify-center gap-2">
+          <h3 className="text-sm">Ambiant volume</h3>
+          <span className="flex items-center justify-center gap-4">
+            <FaVolumeDown className="text-lg" />
+            <input
+              className="range range-sm range-success"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={volumeAmbiant}
+              onChange={ev => setVolumeAmbiant(ev.target.value)}
+            />
+            <FaVolumeUp className="text-2xl" />
+          </span>
+        </div>
       </section>
+      <ReactPlayer className="absolute hidden" url={selectedAmbiant} playing loop volume={volumeAmbiant} />
     </div>
   );
 }
